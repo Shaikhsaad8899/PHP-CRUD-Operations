@@ -1,0 +1,29 @@
+.form-control {
+  width: 300px !important;
+  margin: 10px;
+}
+.form-group {
+  display: inline-flex;
+}
+.container {
+  text-align: center;
+}
+form {
+  text-align: center;
+}
+.main {
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+}
+.table {
+  width: max-content !important;
+  position: absolute;
+  margin: auto !important;
+  transform: translateX(-50%);
+  left: 50%;
+}
+tr > td,
+th > td {
+  text-align: left;
+}
