@@ -18,10 +18,14 @@
         if (isset($_POST["submit"])) {
             $fullName = $_POST["fullname"];
             $email = $_POST["email"];
+            $filename = $_FILES["uploadfile"]["name"];
+            $tempname = $_FILES["uploadfile"]["tmp_name"];
+            $folder = "./image/" . $filename;
             $password = $_POST["password"];
             $passwordRepeat = $_POST["repeat_password"];
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
             $errors = array();
+            move_uploaded_file($tempname, $folder);
             if (empty($fullName) or empty($email) or empty($password) or empty($passwordRepeat)) {
                 array_push($errors, "All fields are required");
             }
@@ -40,11 +44,11 @@
                 }
             } else {
                 require_once "databaseconnection.php";
-                $sql = "INSERT INTO users(full_name, email, password) VALUES(?,?,?)";
+                $sql = "INSERT INTO users(fullname, email, password,filename) VALUES(?,?,?,?)";
                 $stmt = mysqli_stmt_init($conn);
                 $prepareStmt = mysqli_stmt_prepare($stmt, $sql);
                 if ($prepareStmt) {
-                    mysqli_stmt_bind_param($stmt, "sss", $fullName, $email, $password_hash);
+                    mysqli_stmt_bind_param($stmt, "ssss", $fullName, $email, $password_hash,$filename);
                     mysqli_stmt_execute($stmt);
                     echo "<div class='alert alert-success'>You are registered successfully</div>";
                 } else {
@@ -59,12 +63,15 @@
         <?php
         print_r($_POST)
             ?>
-        <form action="registration.php" method="post">
+        <form action="registration.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <input class="form-control" type="text" name="fullname" placeholder="Full Name:">
             </div><br>
             <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="Email:">
+            </div><br>
+            <div class="form-group">
+                <input class="form-control" type="file" name="uploadfile" value="" />
             </div><br>
             <div class="form-group">
                 <input class="form-control" type="password" name="password" placeholder="Password:">
