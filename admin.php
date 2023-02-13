@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="form-group">
+    <div class="    -group">
         <a href="registration.php" class="btn btn-primary">Go to Registration</a>
     </div><br>
     <?php
@@ -77,7 +77,7 @@
                             <?php echo $data['id']; ?>
                             </td>
                         <td>
-                            <?php echo $data['full_name']; ?>
+                            <?php echo $data['fullname']; ?>
                         </td>
                         <td>
                             <?php echo $data['email']; ?>

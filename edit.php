@@ -29,12 +29,15 @@
                 $row = mysqli_fetch_array($result);
                 ?>
                 <div class="form-elemnt my-4">
-                    <input type="text" class="form-control" name="id" placeholder="Id:"
-                        value="<?php echo $row["id"]; ?>">
+                    <input type="text" class="form-control" name="id" placeholder="Id:" value="<?php echo $row["id"]; ?>">
                 </div>
                 <div class="form-elemnt my-4">
-                    <input type="text" class="form-control" name="full_name" placeholder="Full Name:"
-                        value="<?php echo $row["full_name"]; ?>">
+                    <input type="text" class="form-control" name="fullname" placeholder="Full Name:"
+                        value="<?php echo $row["fullname"]; ?>">
+                </div>
+                <div class="form-element my-4">
+                    <input type="file" class="form-control" name="filename"
+                        value="<?php echo $row["filename"]; ?>" title="<?php echo $row["filename"]; ?>">
                 </div>
                 <div class="form-element my-4">
                     <textarea name="email" id="" class="form-control"
@@ -42,8 +45,8 @@
                 </div>
                 <input type="hidden" value="<?php echo $id; ?>" name="id">
                 <div class="form-element my-4">
-                <input type="submit" name="edit" value="Edit User" class="btn btn-primary">
-            </div>
+                    <input type="submit" name="edit" value="Edit User" class="btn btn-primary">
+                </div>
                 <?php
             } else {
                 echo "<h3>User Does Not Exist</h3>";
