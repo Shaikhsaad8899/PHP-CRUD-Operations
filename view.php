@@ -17,7 +17,7 @@
         <header class="d-flex justify-content-between my-4">
             <h1>User Details</h1>
             <div>
-                <a href="index.php" class="btn btn-primary">Back</a>
+                <a href="admin.php" class="btn btn-primary">Back</a>
             </div>
         </header>
         <div class="user-details p-5 my-4">
@@ -33,19 +33,26 @@
                     <p>
                         <?php echo $row["id"]; ?>
                     </p>
-                    <h3>full_name:</h3>
+                    <h3>Profile Image:</h3>
+                    <?php
+                    if (empty($row['filename'])) {
+                        echo 'No image available';
+                    } else {
+                        echo '<img src="Image/' . $row['filename'] . '" alt="image" style="width:10rem"/>';
+                    } ?>
+                    <h3>Full name:</h3>
                     <p>
-                        <?php echo $row["full_name"]; ?>
+                        <?php echo $row["fullname"]; ?>
                     </p>
-                    <h3>email:</h3>
+                    <h3>Email:</h3>
                     <p>
                         <?php echo $row["email"]; ?>
                     </p>
-                    <h3>updated:</h3>
+                    
+                    <h3>Updated:</h3>
                     <p>
                         <?php echo $row["updated on"]; ?>
                     </p>
-
                     <?php
                 }
             } else {
